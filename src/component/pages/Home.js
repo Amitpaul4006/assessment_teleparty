@@ -34,17 +34,20 @@ const Home = () => {
 
       cancelToken = axios.CancelToken.source();
 
-      const response = await axios.get(
-        `https://api.github.com/users/${value}`,
-        {
-          cancelToken: cancelToken.token,
-        }
-      );
-      const newData = {
-        name: response.data.name,
-        followers: response.data.followers,
-      };
-      formatAndSave([...users, newData]);
+      setTimeout(async () => {
+        const response = await axios.get(
+          `https://api.github.com/users/${value}`,
+          {
+            cancelToken: cancelToken.token,
+          }
+        );
+        const newData = {
+          name: response.data.name,
+          followers: response.data.followers,
+        };
+        formatAndSave([...users, newData]);
+      }, 1000)
+
     } catch (error) {
     }
   };
@@ -54,7 +57,7 @@ const Home = () => {
     value = value.replaceAll(" ", "");
     setTimeout(async () => {
       await fetchUsers(value);
-    }, 1000)
+    }, 2000)
   };
 
   return (
