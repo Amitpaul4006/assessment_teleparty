@@ -46,19 +46,15 @@ const Home = () => {
       };
       formatAndSave([...users, newData]);
     } catch (error) {
-      console.log(error);
     }
   };
 
   const handleQueryInput = async (e) => {
     let value = e.target.value;
     value = value.replaceAll(" ", "");
-    //if (value !== ' ') {
-    console.log("value2", value)
     setTimeout(async () => {
       await fetchUsers(value);
     }, 1000)
-    //}
   };
 
   return (
