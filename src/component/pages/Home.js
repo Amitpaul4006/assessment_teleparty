@@ -41,7 +41,7 @@ const Home = () => {
         }
       );
       const newData = {
-        name: response.data.login,
+        name: response.data.name,
         followers: response.data.followers,
       };
       formatAndSave([...users, newData]);
@@ -51,10 +51,14 @@ const Home = () => {
   };
 
   const handleQueryInput = async (e) => {
-    const value = e.target.value;
+    let value = e.target.value;
+    value = value.replaceAll(" ", "");
+    //if (value !== ' ') {
+    console.log("value2", value)
     setTimeout(async () => {
       await fetchUsers(value);
     }, 1000)
+    //}
   };
 
   return (
